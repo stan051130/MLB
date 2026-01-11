@@ -10,7 +10,7 @@ The goal is to build a clean and reproducible ML pipeline, starting with a simpl
 
 Given pre-game information derived from historigal nba games, predict whether the home team will win.
 
-This is a binary classification problem.
+This is a binary classification problem, apply linear regression as a baseline model.
 
 ---
 
