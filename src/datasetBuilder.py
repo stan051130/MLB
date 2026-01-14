@@ -3,7 +3,7 @@ import time
 from nba_api.stats.endpoints import leaguegamelog
 
 SEASONS = ['2021-22', '2022-23', '2023-24'] 
-output_file = 'processed.csv'
+output_file = 'data/processed.csv'
 
 def getData(seasons):
     all_games = []
