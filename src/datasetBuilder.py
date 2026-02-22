@@ -25,10 +25,11 @@ def cleanAndGetStats(df):
     
     df['GAME_DATE'] = pd.to_datetime(df['GAME_DATE'])
     df = df.sort_values(by='GAME_DATE') # sort the games by date
+    df['target_win'] = (df['WL'] == 'W').astype(int)
     
      # code win/loss
      # W = 1, L = 0
-    df['HOME_WIN'] = df['WL'].apply(lambda x: 1 if x == 'W' else 0)
+    df['target_win'] = (df['WL'] == 'W').astype(int)
     
     # stats from the LAST 5 games
 
@@ -38,6 +39,8 @@ def cleanAndGetStats(df):
         # Group by Team. 
         # Shift(1): Moves stats down 1 row (So Game 10 uses stats from Game 9)
         # Rolling(5): Averages the previous 5 shifted rows
+        print("Columns right before rolling:", df.columns.tolist())
+        print("Sample rows:", df.head(3))
         df[f'rolling_{col}'] = df.groupby('TEAM_ID')[col].transform(lambda x: x.shift(1).rolling(5).mean())
 
     # The API returns 2 rows per game. We only need 1 to predict the result.
